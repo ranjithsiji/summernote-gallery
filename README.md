@@ -9,8 +9,10 @@ summernote-gallery extension/plugin/module for [summernote](https://github.com/s
 This is a fork of the original [summernote gallery](https://github.com/eissasoubhi/summernote-gallery) for tweaking it to work on [Bootstrap 5](http://getbootstrap.com) Summernote. To work the whole setup you must install a developement version of summernote. This plugin work with Bootstrap 5.1.3.
 
 # Demo
+Demo link - Bootstrap 5:
+http://ranjithsiji.github.io/summernote-gallery <br><br>
 
-Demo link - Bottstrap3:
+Demo link - Bootstrap 3:
 http://eissasoubhi.github.io/summernote-gallery <br><br>
 
 ![Summernote gallery demo](demo.gif?raw=true "Summernote gallery demo")

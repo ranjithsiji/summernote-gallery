@@ -5,9 +5,12 @@ summernote-gallery extension/plugin/module for [summernote](https://github.com/s
 
 **For a complete module with more user-friendly components. see [Summernote bricks](https://github.com/eissasoubhi/summernote-bricks)**
 
+# Summernote Gallery for Bootstrap 5
+This is a fork of the original [summernote gallery](https://github.com/eissasoubhi/summernote-gallery) for tweaking it to work on [Bootstrap 5](http://getbootstrap.com) Summernote. To work the whole setup you must install a developement version of summernote. This plugin work with Bootstrap 5.1.3.
+
 # Demo
 
-Demo link:
+Demo link - Bottstrap3:
 http://eissasoubhi.github.io/summernote-gallery <br><br>
 
 ![Summernote gallery demo](demo.gif?raw=true "Summernote gallery demo")
@@ -17,14 +20,15 @@ http://eissasoubhi.github.io/summernote-gallery <br><br>
 
 ```html
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
+<link href="summernote/summernote-bs5.min.css" rel="stylesheet">
 
 <div id="summernote"></div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="summernote/summernote-bs5.min.js" type="text/javascript"></script>
 <!-- summernote-gallery -->
 <script src="dist/summernote-gallery.min.js" type="text/javascript"></script>
 ```
@@ -33,12 +37,12 @@ http://eissasoubhi.github.io/summernote-gallery <br><br>
 ```javascript
 $('#summernote').summernote({
         toolbar: [
-            // ['insert', ['picture', 'link', 'video', 'table', 'hr', 'summernoteGallery']],
-            // ['font style', ['fontname', 'fontsize', 'color', 'bold', 'italic', 
-            //'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
-            // ['paragraph style', ['style', 'ol', 'ul', 'paragraph', 'height']],
-            // ['misc', ['fullscreen', 'codeview', 'undo', 'redo', 'help']]
-            ['extensions', ['summernoteGallery']],
+                ['insert', ['picture', 'link', 'video', 'table', 'hr', 'summernoteGallery']],
+                ['font style', ['fontname', 'fontsize', 'color', 'bold', 'italic',
+                'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+                ['paragraph style', ['style', 'ol', 'ul', 'paragraph', 'height']],
+                ['misc', ['fullscreen', 'codeview', 'undo', 'redo', 'help']]
+                ['extensions', ['summernoteGallery']],
         ],
         summernoteGallery: {
             source: {
@@ -50,14 +54,14 @@ $('#summernote').summernote({
             modal: {
                 loadOnScroll: true,
                 maxHeight: 300,
-                title: "La galerie d'images",
-                close_text: 'Fermer',
-                ok_text: 'Ajouter',
-                selectAll_text: 'Sélectionner Tout',
-                deselectAll_text: 'Désélectionner Tout',
+                title: "Summernote Gallery",
+                close_text: 'Close',
+                ok_text: 'Add',
+                selectAll_text: 'Select All',
+                deselectAll_text: 'Deselect All',
                 noImageSelected_msg: 'No image was selected, please select one by clicking it!',
-                buttonLabel: '<i class="fa fa-file-image-o"></i> Gallery'
             }
+             buttonLabel: '<i class="fa fa-file-image-o"></i> Gallery'
         }
     });
 ```

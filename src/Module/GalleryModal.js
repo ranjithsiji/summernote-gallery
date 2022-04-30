@@ -11,7 +11,7 @@ export default class GalleryModal {
             maxHeight: 500,
 
             // modal title
-            title: 'summernote image gallery',
+            title: 'Summernote Image Gallery',
 
             // close button text
             close_text: 'Close',
@@ -33,6 +33,7 @@ export default class GalleryModal {
 
         this.template = this.getModalTemplate();
         this.$modal = $(this.template).hide();
+        //this.$modal = $(this.template);
 
         // class to add to image when selected
         this.select_class = "selected-img";
@@ -83,7 +84,7 @@ export default class GalleryModal {
 
             $image.attr('src', data[i].src);
 
-            var $item = $('<div class="col-md-2 mb-4 img-item">'
+            var $item = $('<div class="col-md-4 mb-4 img-item">'
                             +'<i class="fa fa-check"></i>'
                             +'<span class="loading">'
                                 +'<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>'
@@ -130,8 +131,7 @@ export default class GalleryModal {
                 return;
             }
 
-            $modal.modal('hide')
-
+            //$modal.modal('hide')
             _this.event.trigger('beforeSave', [_this]);
 
             $selected_img.each(function(index, el) {
@@ -154,6 +154,12 @@ export default class GalleryModal {
         $modal.find("button#deselect-all").click(function(event) {
             $modal.find('img').removeClass(_this.select_class);
         });
+        $modal.find("button#close").click(function(event) {
+            _this.event.trigger('close')
+        });
+        $modal.find("button#mdClose").click(function(event) {
+            _this.event.trigger('close')
+        });
 
         $modal_body.scroll(function() {
             var $images_list = $modal.find('.images-list');
@@ -166,14 +172,26 @@ export default class GalleryModal {
     }
 
     open() {
-        this.$modal.modal();
+        //console.log(this.$modal);
+        //this.$modal.modal();
+        this.addModalToDom();
+        this.showModal();
     }
 
     clearContent() {
         // Reset the initial html
         this.$modal.find('.images-list').html('');
     }
-
+    hideModal() {
+        this.$modal.hide();
+    }
+    showModal() {
+        this.$modal.show();
+    }
+    addModalToDom()
+    {
+        this.$modal.appendTo('body');
+    }
     // whether the images' container has enough content to show the vertical scroll
     imagesContainerHasScroll() {
         var $images_container = this.$modal.find('.modal-body');
@@ -186,16 +204,17 @@ export default class GalleryModal {
 
         var bootsrap_version = parseInt($.fn.modal.Constructor.VERSION);
         var header_content = [
-            '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>',
+            '<button type="button" class="close" id="mdClose" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>',
             '<h4 class="modal-title">[gallery title]</h4>'
         ];
 
         var modal_html = ''+
-            '<div class="modal summernote-gallery fade" tabindex="-1" role="dialog">'
-                + '<div class="modal-lg modal-dialog ">'
+            '<div class="modal summernote-gallery" tabindex="-1" role="dialog">'
+                + '<div class="modal-dialog ">'
                     + '<div class="modal-content">'
                         + '<div class="modal-header">'
-                            + (bootsrap_version == 3 ? header_content.join('') : header_content.reverse().join(''))
+                            + '<h5 class="modal-title" id="galleryModalLabel">[gallery title]</h5>'
+                            +'<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>'
                         + '</div>'
                         + '<div class="modal-body">'
                             + '<div class="row images-list">'
@@ -209,7 +228,7 @@ export default class GalleryModal {
                                 + '<button type="button" id="deselect-all" class="btn btn-default">[Deselect-all]</button>'
                                 + '<button type="button" id="select-all" class="btn btn-default">[select-all]</button>'
                             + '</span >'
-                            + '<button type="button" id="close" class="btn btn-default" data-dismiss="modal">[Close]</button>'
+                            + '<button type="button" id="close" class="btn btn-danger" data-dismiss="modal">[Close]</button>'
                             + '<button type="button" id="save" class="btn btn-primary">[Add]</button>'
                             + '<span class="message" ></span >'
                         + '</div>'

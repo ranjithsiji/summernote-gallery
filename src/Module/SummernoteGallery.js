@@ -5,7 +5,7 @@ export default class SummernoteGallery {
     constructor(options) {
         this.options = $.extend({
             name: 'summernoteGallery',
-            buttonLabel: '<i class="fa fa-file-image-o"></i> SN Gallery',
+            buttonLabel: '<i class="fa fa-file-image-o"></i> Gallery',
             tooltip: 'summernote gallery'
         }, options);
 
@@ -85,6 +85,13 @@ export default class SummernoteGallery {
         this.modal.event.on('close', function (gallery_modal) {
             _this.data_manager.init();
             _this.modal.clearContent();
+            _this.modal.hideModal();
+        });
+
+        this.modal.event.on('afterSave', function (gallery_modal) {
+            _this.data_manager.init();
+            _this.modal.clearContent();
+            _this.modal.hideModal();
         });
     }
 
@@ -106,7 +113,6 @@ export default class SummernoteGallery {
 
     attachDataEvents() {
         var _this = this;
-
         this.data_manager.event
         .on('beforeFetch', function () {
             _this.modal.showLoading();
@@ -131,6 +137,7 @@ export default class SummernoteGallery {
     }
 
     openGallery() {
+        console.log("Start Open Gallery");
         this.attachDataEvents();
         this.data_manager.fetchData();
         this.modal.open();
